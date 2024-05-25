@@ -1,133 +1,154 @@
-#her bir tablo için linked list tanımla. birinci tablo node'ları case numarası ve bir boyutlu offset array'i tutar.
-#ikinci ve üçüncü tablolar için linked list string ve string dizisi tutar.
-#from ctypes.wintypes import BYTE
-#from re import A
-
-
+import os
+#A list representing an index table holds Node entities. In the primary index list, the nodes maintain a case number and a one-dimensional offset list.
+#The secondary index lists hold the name of the plaintiff or defendant and the case numbers associated with those persons.
 class Node:
     def __init__(self, key, listt):
         self.key = key
         self.list = listt
 
-#buradaki değişkenleri döngünün içinde kullanacağız. her bir satırı kelime kelime belirlediğimiz işaretlere kadar tarayıp 
-#field değerlerini alacağız. bu değerleri aldıktan sonra ilgili listelere ekleyeceğiz. En sonunda bu listeleri ilgili dosyalara ekleyeceğiz        
+#We're going to use the variables here inside the loop.We will scan each line up to the marks we have determined character by character
+#and get the field values. Once we have these values, we will add them to the corresponding lists. Eventually, we will add these lists to the relevant files.
 plaintiffField = ""
 defendantField = ""
 numberField = ""
-#switch bir satırı aşan kayıtları belirlemek için kullanılır.
+#switch is used to identify records that have two lines.
 switch = False
-#tablo oluşturmak için gereken listeleri oluşturalım
+#Let's create the lists required to create the index files. Each list consists of two fields. The first is the key and the second is the list. 
+#These lists represent index files. After the loop is finished, each of them is written to separate files.
 indexTableList = []
 secondaryTableList_plaintiff = [] 
 secondaryTableList_defendant = []
-#offset bulmak için length kullanalım
+#Let's use length to find offset value.
 lengthOfCursor = 0
-#ilk önce demo dosyasını okuyalım
+#First, let's read the court-case file.
 with open("court-cases.txt", "r") as f:
     for line in f:
-        #Her satırın uzunluğunu bulalım
+        #Let's find the offset of each record.
         if not switch:
             byteOffset = lengthOfCursor
-        lengthOfCursor += len(line) + 1 #+1 is added for \n character at the end of the each row
+        #1 is added for \n character at the end of the each row.
+        lengthOfCursor += len(line) + 1
         if not switch:
-        #Birinci alanı alalım. V. yi görene kadar ekle
-            firstOffset = line.find("v.") or line.find("V.")# it definitely exist since not switch
+        #Combine characters until you see V./v. to get the plaintiff field.
+            firstOffset = line.find(" v. ")
+            if(firstOffset == -1):
+                firstOffset = line.find(" V. ")
+            #Let's combine the characters up to firstOffset.
             for indis in range(firstOffset):
                 plaintiffField += line[indis]
+            #If the list is empty, let's add our first Node.
             if(len(secondaryTableList_plaintiff) == 0):
                 secondIndexElement = Node(plaintiffField,[])    
                 secondaryTableList_plaintiff.append(secondIndexElement)
+            #If there is an Node in the list, scan the list so that the Node we added is not duplicated.
             else:    
-                loop_counter = 0   
+                loop_counter = 0
+                #If there is a node in the list whose key is equal to the plaintiff field, there is no need to add it.
                 for obj in secondaryTableList_plaintiff:
                     if obj.key == plaintiffField:
                         break
-                    if loop_counter == len(secondaryTableList_plaintiff)-1:# son aşamaya kadar loop'tan çıkmadıysa bu key'in eşiti yoktur.
+                    #If it has not exited the loop until the last stage, the Node with this key is not in the list. That's why we need to add.
+                    if loop_counter == len(secondaryTableList_plaintiff)-1:
                         secondIndexElement = Node(plaintiffField,[])    
                         secondaryTableList_plaintiff.append(secondIndexElement)
-                        #print(secondIndexElement.key)
                     else:
                         loop_counter += 1
    
-        #ikinci alanı alalım
+        #Let's take the defendant field.
         secondOffset = line.find("(")
         if secondOffset != -1:
-        #range between .v and ( excluded.
+        #.v/.V and ( are excluded. If it is not a switch, the record does not exceed 1 line.
             if not switch:
-                for indis in range(firstOffset+2, secondOffset):
+                #Let's combine the characters between the characters v./V. and (.
+                for indis in range(firstOffset+3, secondOffset):
                     defendantField += line[indis]
+                defendantField = defendantField.strip()    
+                #If our list is empty, let's add the first Node.
                 if(len(secondaryTableList_defendant) == 0):
                     secondaryIndexEl = Node(defendantField, [])
                     secondaryTableList_defendant.append(secondaryIndexEl)
-                else:    
+                #If there is an Node in the list, scan the list so that the Node we added is not duplicated.
+                else:  
                     loop_counter = 0
                     for obj in secondaryTableList_defendant:
+                        #If there is a node in the list whose key is equal to the defendant field, there is no need to add it.
                         if obj.key == defendantField:
                             break
+                        #If it has not exited the loop until the last stage, the Node with this key is not in the list. That's why we need to add.
                         if loop_counter == len(secondaryTableList_defendant)-1:
                             secondaryIndexEl = Node(defendantField, [])
                             secondaryTableList_defendant.append(secondaryIndexEl)
                         else:
                             loop_counter += 1
+            #If it is a switch, the record is 2 lines and we are now on a bottom line.
             else:
+                #Let's combine the characters up to the specified sign.
                 for indis in range(secondOffset):
                     defendantField += line[indis]
+                #If our list is empty, let's add the first Node.
                 if(len(secondaryTableList_defendant) == 0):
                     secondaryIndexEl = Node(defendantField, [])
                     secondaryTableList_defendant.append(secondaryIndexEl)
-                else:    
+                 #If there is an Node in the list, scan the list so that the Node we added is not duplicated.
+                else:
                     loop_counter = 0
                     for obj in secondaryTableList_defendant:
+                        #If there is a node in the list whose key is equal to the defendant field, there is no need to add it.
                         if obj.key == defendantField:
                             break
+                        #If it has not exited the loop until the last stage, the Node with this key is not in the list. That's why we need to add.
                         if loop_counter == len(secondaryTableList_defendant)-1:
                             secondaryIndexEl = Node(defendantField, [])
                             secondaryTableList_defendant.append(secondaryIndexEl)
                         else:
                             loop_counter += 1    
                 switch = False
-                
-        else: ##ilk olarak firstOffset+2 den almalıyım. ikinci olarak 0.satırdan başlamalıyım.          
-           for indis in range(firstOffset+2, len(line)):
+        #Else the corresponding record is 2 lines.
+        else:
+           #We must combine the characters in the first line until the end of the line, starting with a certain character.
+           for indis in range(firstOffset+3, len(line)):
                defendantField += line[indis]
            defendantField = defendantField.strip()
-           switch = True
-        
-        #if not switch: 
-        #    defendantField = ""
-        #else:
-        #    pass    
+           switch = True 
 
         if not switch:
+            #Let's get the number field.
             thirdOffset = line.find(")")
+            # Let's combine all the characters up to this ")"character, starting with a certain character.
             for indis in range(secondOffset+1, thirdOffset):
                 numberField += line[indis]
                 
-            #üçüncü alan birinci index tablosunda olacağı için index listesi hazırlayalım
-            indexElement = Node(numberField ,[])# bu index elemanını daha sonra indextablosuna ekleme ve yazıdr.
+            #Let's create the Node that stores the number field.
+            indexElement = Node(numberField ,[])
             indexElement.list.append(byteOffset)
             
-            #oluşan index listesini index tablosuna aktaralım
+            #Let's add the resulting Node to the relevant list.
             indexTableList.append(indexElement)
-            #ikincil index tablosunun secondary key'i dava numarası olduğundan listeye ekleme işlemini burada yapmalıyım.
-            #eğer ikincil index tablosunda ilk alan varsa o ilk alanı bulmalı ve numarayı onun listesine eklemeliyim
+            
+            #Since the secondary key of the secondary index file is the case number, I should add it to the list here.
+            #If I can find the key of the secondary list that belongs to this loop, I should add the number field to its list.
             for obj in secondaryTableList_plaintiff:
+                #Let's find the Node whose key is plaintiffField in this loop and add the case number to the Node's list.
                 if obj.key == plaintiffField:
                     obj.list.append(numberField)
-                    
+
+            #Since the secondary key of the secondary index file is the case number, I should add it to the list here.
+            #If I can find the key of the secondary list that belongs to this loop, I should add the number field to its list.
             for obj in secondaryTableList_defendant:
+                #Let's find the Node whose key is defendantField in this loop and add the case number to the Node's list.
                 if obj.key == defendantField:
                     obj.list.append(numberField)
         else:
             pass
         
+        #If the record is two lines, it will be useful for us not to lose the information here when moving to the second line.
         if not switch:
             plaintiffField = ""
             numberField = ""
             defendantField = ""
  
-#ilgili tablolar için dizileri oluşturduktan sonra bu dizilerin içeriğini dosyalara aktaralım
-##################################################################################SILMEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!
+#After creating the lists for the relevant index files, let's transfer the content of these lists to the files.
+
 with open("indexFile.txt", "w") as wf:
     for row in indexTableList:
         line = row.key + " "
@@ -147,28 +168,26 @@ with open("secondaryIndexFile_defendant.txt", "w") as wf:
         line = row.key
         strList = " ".join(row.list)
         line += strList
-        wf.write(line + '\n') 
-##################################################################################SILMEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!
-#for obj in secondaryTableList_plaintiff:
-#    line = obj.key
-#    lt = " ".join(obj.list)
-#    line += lt
-    #print(f"{type(obj.key)} and {type(obj.list)}")
-#    print(line)
+        wf.write(line + '\n')
 
-#demo dosyasını 3 alana bölelim.
-#birinci alan en iki karakteri v. ya da V. olan alandır. bu son iki karakteri çıkar.
-#ikinci alan en son karakteri ( işareti olan alandır. bu son karakteri çıkar.
-#üçüncü alan en son karakteri ) olan alandır. bu son karakteri çıkar.
+#This function sorts the files in alphabetical order
+def sortFile(fileName):
+    txtFile = open(f"{fileName}.txt", "r")
+    lines = txtFile.readlines()
+    lines.sort()
+    sortedTxtFile = open(f"{fileName}_sorted.txt", "w")
+    for line in lines:
+        sortedTxtFile.write(line)
+    sortedTxtFile.close()
+    txtFile.close()
 
-#ilk tablo için dava numarası ve o satırın başlangıç adresini alalım.
-#ikinci tabloda davacı adı ve ona karşılık gelen dava numaraları
-#üçüncü tabloda davalı adı ve ona karşılık gelen dava numaraları
-
-#search algoritmasıyla birinci tablodan direkt olarak o satırın başlangıç offset'ine gideriz.
-#ikinci ve üçüncü tablodan bir dava numarası dizisiyle direkt birinci tabloya gideriz. her dava numarası için ilgili satırı çekeriz.
-
-#dosyaları yazdırma işlemi bittikten sonra kullanıcıya neyi kullanarak arama yapacağını sormalıyız.
+#Let's sort each resulting file in alphabetical order
+fileName = "indexFile"
+sortFile(fileName)
+fileName = "secondaryIndexFile_plaintiff"
+sortFile(fileName)
+fileName = "secondaryIndexFile_defendant"
+sortFile(fileName)
 
 def find_offset(case_number):
     with open("indexFile.txt", "r") as file:
