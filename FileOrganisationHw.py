@@ -1,5 +1,5 @@
-#her bir tablo için linked list tanımla. birinci tablo node'ları case numarası ve bir boyutlu offset array'i tutar.
-#ikinci ve üçüncü tablolar için linked list string ve string dizisi tutar.
+#her bir tablo iÃ§in linked list tanÄ±mla. birinci tablo node'larÄ± case numarasÄ± ve bir boyutlu offset array'i tutar.
+#ikinci ve Ã¼Ã§Ã¼ncÃ¼ tablolar iÃ§in linked list string ve string dizisi tutar.
 #from ctypes.wintypes import BYTE
 #from re import A
 
@@ -9,28 +9,28 @@ class Node:
         self.key = key
         self.list = listt
 
-#buradaki değişkenleri döngünün içinde kullanacağız. her bir satırı kelime kelime belirlediğimiz işaretlere kadar tarayıp 
-#field değerlerini alacağız. bu değerleri aldıktan sonra ilgili listelere ekleyeceğiz. En sonunda bu listeleri ilgili dosyalara ekleyeceğiz        
+#buradaki deÄŸiÅŸkenleri dÃ¶ngÃ¼nÃ¼n iÃ§inde kullanacaÄŸÄ±z. her bir satÄ±rÄ± kelime kelime belirlediÄŸimiz iÅŸaretlere kadar tarayÄ±p 
+#field deÄŸerlerini alacaÄŸÄ±z. bu deÄŸerleri aldÄ±ktan sonra ilgili listelere ekleyeceÄŸiz. En sonunda bu listeleri ilgili dosyalara ekleyeceÄŸiz        
 plaintiffField = ""
 defendantField = ""
 numberField = ""
-#switch bir satırı aşan kayıtları belirlemek için kullanılır.
+#switch bir satÄ±rÄ± aÅŸan kayÄ±tlarÄ± belirlemek iÃ§in kullanÄ±lÄ±r.
 switch = False
-#tablo oluşturmak için gereken listeleri oluşturalım
+#tablo oluÅŸturmak iÃ§in gereken listeleri oluÅŸturalÄ±m
 indexTableList = []
 secondaryTableList_plaintiff = [] 
 secondaryTableList_defendant = []
-#offset bulmak için length kullanalım
+#offset bulmak iÃ§in length kullanalÄ±m
 lengthOfCursor = 0
-#ilk önce demo dosyasını okuyalım
+#ilk Ã¶nce demo dosyasÄ±nÄ± okuyalÄ±m
 with open("court-cases.txt", "r") as f:
     for line in f:
-        #Her satırın uzunluğunu bulalım
+        #Her satÄ±rÄ±n uzunluÄŸunu bulalÄ±m
         if not switch:
             byteOffset = lengthOfCursor
         lengthOfCursor += len(line) + 1 #+1 is added for \n character at the end of the each row
         if not switch:
-        #Birinci alanı alalım. V. yi görene kadar ekle
+        #Birinci alanÄ± alalÄ±m. V. yi gÃ¶rene kadar ekle
             firstOffset = line.find("v.") or line.find("V.")# it definitely exist since not switch
             for indis in range(firstOffset):
                 plaintiffField += line[indis]
@@ -42,14 +42,14 @@ with open("court-cases.txt", "r") as f:
                 for obj in secondaryTableList_plaintiff:
                     if obj.key == plaintiffField:
                         break
-                    if loop_counter == len(secondaryTableList_plaintiff)-1:# son aşamaya kadar loop'tan çıkmadıysa bu key'in eşiti yoktur.
+                    if loop_counter == len(secondaryTableList_plaintiff)-1:# son aÅŸamaya kadar loop'tan Ã§Ä±kmadÄ±ysa bu key'in eÅŸiti yoktur.
                         secondIndexElement = Node(plaintiffField,[])    
                         secondaryTableList_plaintiff.append(secondIndexElement)
                         #print(secondIndexElement.key)
                     else:
                         loop_counter += 1
    
-        #ikinci alanı alalım
+        #ikinci alanÄ± alalÄ±m
         secondOffset = line.find("(")
         if secondOffset != -1:
         #range between .v and ( excluded.
@@ -87,7 +87,7 @@ with open("court-cases.txt", "r") as f:
                             loop_counter += 1    
                 switch = False
                 
-        else: ##ilk olarak firstOffset+2 den almalıyım. ikinci olarak 0.satırdan başlamalıyım.          
+        else: ##ilk olarak firstOffset+2 den almalÄ±yÄ±m. ikinci olarak 0.satÄ±rdan baÅŸlamalÄ±yÄ±m.          
            for indis in range(firstOffset+2, len(line)):
                defendantField += line[indis]
            defendantField = defendantField.strip()
@@ -103,14 +103,14 @@ with open("court-cases.txt", "r") as f:
             for indis in range(secondOffset+1, thirdOffset):
                 numberField += line[indis]
                 
-            #üçüncü alan birinci index tablosunda olacağı için index listesi hazırlayalım
-            indexElement = Node(numberField ,[])# bu index elemanını daha sonra indextablosuna ekleme ve yazıdr.
+            #Ã¼Ã§Ã¼ncÃ¼ alan birinci index tablosunda olacaÄŸÄ± iÃ§in index listesi hazÄ±rlayalÄ±m
+            indexElement = Node(numberField ,[])# bu index elemanÄ±nÄ± daha sonra indextablosuna ekleme ve yazÄ±dr.
             indexElement.list.append(byteOffset)
             
-            #oluşan index listesini index tablosuna aktaralım
+            #oluÅŸan index listesini index tablosuna aktaralÄ±m
             indexTableList.append(indexElement)
-            #ikincil index tablosunun secondary key'i dava numarası olduğundan listeye ekleme işlemini burada yapmalıyım.
-            #eğer ikincil index tablosunda ilk alan varsa o ilk alanı bulmalı ve numarayı onun listesine eklemeliyim
+            #ikincil index tablosunun secondary key'i dava numarasÄ± olduÄŸundan listeye ekleme iÅŸlemini burada yapmalÄ±yÄ±m.
+            #eÄŸer ikincil index tablosunda ilk alan varsa o ilk alanÄ± bulmalÄ± ve numarayÄ± onun listesine eklemeliyim
             for obj in secondaryTableList_plaintiff:
                 if obj.key == plaintiffField:
                     obj.list.append(numberField)
@@ -126,7 +126,7 @@ with open("court-cases.txt", "r") as f:
             numberField = ""
             defendantField = ""
  
-#ilgili tablolar için dizileri oluşturduktan sonra bu dizilerin içeriğini dosyalara aktaralım
+#ilgili tablolar iÃ§in dizileri oluÅŸturduktan sonra bu dizilerin iÃ§eriÄŸini dosyalara aktaralÄ±m
 ##################################################################################SILMEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!
 with open("indexFile.txt", "w") as wf:
     for row in indexTableList:
@@ -156,25 +156,145 @@ with open("secondaryIndexFile_defendant.txt", "w") as wf:
     #print(f"{type(obj.key)} and {type(obj.list)}")
 #    print(line)
 
-#demo dosyasını 3 alana bölelim.
-#birinci alan en iki karakteri v. ya da V. olan alandır. bu son iki karakteri çıkar.
-#ikinci alan en son karakteri ( işareti olan alandır. bu son karakteri çıkar.
-#üçüncü alan en son karakteri ) olan alandır. bu son karakteri çıkar.
+#demo dosyasÄ±nÄ± 3 alana bÃ¶lelim.
+#birinci alan en iki karakteri v. ya da V. olan alandÄ±r. bu son iki karakteri Ã§Ä±kar.
+#ikinci alan en son karakteri ( iÅŸareti olan alandÄ±r. bu son karakteri Ã§Ä±kar.
+#Ã¼Ã§Ã¼ncÃ¼ alan en son karakteri ) olan alandÄ±r. bu son karakteri Ã§Ä±kar.
 
-#ilk tablo için dava numarası ve o satırın başlangıç adresini alalım.
-#ikinci tabloda davacı adı ve ona karşılık gelen dava numaraları
-#üçüncü tabloda davalı adı ve ona karşılık gelen dava numaraları
+#ilk tablo iÃ§in dava numarasÄ± ve o satÄ±rÄ±n baÅŸlangÄ±Ã§ adresini alalÄ±m.
+#ikinci tabloda davacÄ± adÄ± ve ona karÅŸÄ±lÄ±k gelen dava numaralarÄ±
+#Ã¼Ã§Ã¼ncÃ¼ tabloda davalÄ± adÄ± ve ona karÅŸÄ±lÄ±k gelen dava numaralarÄ±
 
-#search algoritmasıyla birinci tablodan direkt olarak o satırın başlangıç offset'ine gideriz.
-#ikinci ve üçüncü tablodan bir dava numarası dizisiyle direkt birinci tabloya gideriz. her dava numarası için ilgili satırı çekeriz.
+#search algoritmasÄ±yla birinci tablodan direkt olarak o satÄ±rÄ±n baÅŸlangÄ±Ã§ offset'ine gideriz.
+#ikinci ve Ã¼Ã§Ã¼ncÃ¼ tablodan bir dava numarasÄ± dizisiyle direkt birinci tabloya gideriz. her dava numarasÄ± iÃ§in ilgili satÄ±rÄ± Ã§ekeriz.
 
-#dosyaları yazdırma işlemi bittikten sonra kullanıcıya neyi kullanarak arama yapacağını sormalıyız.
-print("Hangi alan ile kayit arayacaksaniz o alani veren karakteri giriniz:\na-Plaintiff \nb-Defendant \nc-Case No")
-field = input()
-while(field != "a" and field != "b" and field != "c"):
-    print("Lutfen gecerli karakterlerden birini giriniz!\na-Plaintiff \nb-Defendat \nc-Case No")
-    field = input()
+#dosyalarÄ± yazdÄ±rma iÅŸlemi bittikten sonra kullanÄ±cÄ±ya neyi kullanarak arama yapacaÄŸÄ±nÄ± sormalÄ±yÄ±z.
 
-#kullanıcı search fonksiyonu ile arama yapar. search fonksiyonu ilgili kayıtları döndürür.
+def find_offset(case_number):
+    with open("indexFile.txt", "r") as file:
+        for line in file:
+            parts = line.split()
+            num = parts[0]
+            offset = parts[1]
+            if num == case_number:
+                return offset
+    return None
+
+
+
+def get_case_from_offset(offset):
+    with open("demo.txt", "r") as file:
+        file.seek(int(offset))
+        return file.readline().strip()
+
+
+
 def search():
-    pass
+    print("Hangi alanda arama yapmak istersiniz?")
+    print("1. Plaintiff")
+    print("2. Defendant")
+    print("3. Case Number")
+
+    choice = input("SeÃ§iminizi yapÄ±nÄ±z (1/2/3): ")
+
+    if choice == "1":
+        search_plaintiff()
+    elif choice == "2":
+        search_defendant()
+    elif choice == "3":
+        search_case_number()
+    else:
+        print("GeÃ§ersiz seÃ§im!")
+
+
+def search_plaintiff():
+    keyword = input("Plaintiff adÄ±nÄ± giriniz: ").strip().lower()
+    found = False  # Bir eÅŸleÅŸme bulunup bulunmadÄ±ÄŸÄ±nÄ± takip etmek iÃ§in
+
+    with open("secondaryIndexFile_plaintiff.txt", "r") as file:
+        for line in file:
+            parts = line.strip().split()  # BoÅŸluklara gÃ¶re ayÄ±r
+            plantiff_name = ""
+            case_numbers = []
+            for part in parts:
+                if part.isdigit():
+                    case_numbers.append(part)
+                else:
+                    plantiff_name += part + " "
+
+            plantiff_name = plantiff_name.strip().lower()
+
+            if keyword == plantiff_name:
+                found = True
+                print(f"Plantiff: {plantiff_name.capitalize()}")
+
+                # Case numaralarÄ±nÄ± ayÄ±r
+                for case_number in case_numbers:
+                    offset = find_offset(case_number)
+                    if offset is not None:
+                        case_data = get_case_from_offset(offset)
+                        print(f"Case Number: {case_number}")
+                        print(f"Case Data: {case_data}")
+                    else:
+                        print(f"Case number bulunamadÄ±: {case_number}")
+
+    if not found:
+        print("Plantiff bulunamadÄ±:", keyword)
+
+
+def search_defendant():
+    keyword = input("Defendant adÄ±nÄ± giriniz: ").strip().lower()
+
+    found = False  # Bir eÅŸleÅŸme bulunup bulunmadÄ±ÄŸÄ±nÄ± takip etmek iÃ§in
+
+    with open("secondaryIndexFile_defendant.txt", "r") as file:
+        for line in file:
+            parts = line.strip().split()  # BoÅŸluklara gÃ¶re ayÄ±r
+            defendant_name = ""
+            case_numbers = []
+            for part in parts:
+                if part.isdigit():
+                    case_numbers.append(part)
+                else:
+                    defendant_name += part + " "
+
+            defendant_name = defendant_name.strip().lower()
+
+            if keyword == defendant_name:
+                found = True
+                print(f"Defendant: {defendant_name.capitalize()}")
+
+                # Case numaralarÄ±nÄ± ayÄ±r
+                for case_number in case_numbers:
+                    offset = find_offset(case_number)
+                    if offset is not None:
+                        case_data = get_case_from_offset(offset)
+                        print(f"Case Number: {case_number}")
+                        print(f"Case Data: {case_data}")
+                    else:
+                        print(f"Case number bulunamadÄ±: {case_number}")
+
+    if not found:
+        print("Defendant bulunamadÄ±:", keyword)
+
+
+
+
+def search_case_number():
+    keyword = input("Case number'Ä± giriniz: ").strip().lower()
+
+    with open("indexFile.txt", "r") as file:
+        for line in file:
+            if keyword in line.lower():
+                # Case number'a ait offset deÄŸerini alÄ±n
+                offset = int(line.split()[1])
+                # Offset deÄŸerine gÃ¶re orijinal dosyadan veriyi alÄ±n
+                case_data = get_case_from_offset(offset)
+                print("Bulunan Case Verisi:")
+                print(case_data)
+                return
+
+    print("Case number bulunamadÄ±:", keyword)
+
+
+search()
