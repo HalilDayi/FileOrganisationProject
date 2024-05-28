@@ -240,22 +240,7 @@ def get_case_from_offset(offset):
     """Retrieves case data from given offset."""
     with open("court-cases.txt", "r") as file:
         file.seek(int(offset))
-        case_data = ''
-        parantez_sayaci = 0
-        for line in file:
-            if '(' in line:
-                parantez_sayaci += line.count('(')
-            if ')' in line:
-                parantez_sayaci -= line.count(')')
-                if parantez_sayaci <= 0:
-                    case_data += line.strip()  # Parantezin olduğu satırı da ekle
-                    break
-            case_data += line.strip() + ' '  # Her satırı birleştir ve bir boşluk ekle
-        return case_data.strip()
-
-
-
-
+        return file.readline().strip()
 
 def search():
     """Main search function."""
@@ -330,12 +315,11 @@ def search_plaintiff():
             print("\n You may have entered incorrect or incomplete data. Please try again")
         return_to_menu()
 
-
 def search_defendant():
     """Searches for cases based on defendant name."""
     while True:
-        print("\n !!! You must enter the defendant's name exactly as registered in our system. !!! ")
-        keyword = input("Enter defendant's name (press 'm' to return to the main menu, 'q' to quit): ").strip().lower()
+        print("\n !!! You must enter your name exactly as you registered our system. !!! ")
+        keyword = input("Enter defendant name (press 'm' to return to the main menu, 'q' to quit): ").strip().lower()
         if keyword == 'm':
             return
         elif keyword == 'q':
@@ -343,33 +327,43 @@ def search_defendant():
 
         found = False  # Track whether a match was found
 
-        with open("court-cases.txt", "r") as file:
-            case_data = ""  # Initialize case data to store entire case
+        with open("secondaryIndexFile_defendant_sorted.txt", "r") as file:
             for line in file:
-                # Concatenate lines until an empty line or a new case begins
-                if line.strip():
-                    # Append all lines to the case data
-                    case_data += " " + line.strip()
-                else:
-                    # Check if the keyword is in the combined case data
-                    if keyword in case_data.lower():
-                        found = True
-                        print(f"\nDefendant: {keyword.capitalize()}\n")
-                        print("--------------------------------------------------")
-                        print(f"Case Data: {case_data}")
-                        print("--------------------------------------------------")
-                    # Reset case data for the next case
-                    case_data = ""
+                parts = line.strip().split()  # Split by spaces
+                defendant_name = ""
+                case_numbers = []
+                for part in parts:
+                    if part.isdigit():
+                        case_numbers.append(part)
+                    else:
+                        defendant_name += part + " "
+
+                defendant_name = defendant_name.strip().lower()
+
+                if keyword == defendant_name:
+                    found = True
+                    print(f"\nDefendant: {defendant_name.capitalize()}\n")
+
+                    # Separate case numbers
+                    for case_number in case_numbers:
+                        offset = find_offset(case_number)
+                        if offset is not None:
+                            case_data = get_case_from_offset(offset)
+                            # Remove case number from case data
+                            case_data = case_data.replace(f"({case_number})", "")
+                            print("--------------------------------------------------")
+                            print(f"Case Number: {case_number}")
+                            print(f"Case Data: {case_data}")
+                            print("--------------------------------------------------")
+                        else:
+                            print(f"Case number not found: {case_number}")
+                            print("\n You may have entered incorrect or incomplete data. Please try again")
 
         if not found:
             print("Defendant not found:", keyword)
             print("\n You may have entered incorrect or incomplete data. Please try again")
 
         return_to_menu()
-
-
-
-# Board of Trustees of New Jerusalem Church of God in Christ (80679) Board of Trustees of New Jerusalem Church of God in Christ
 
 
 def search_case_number():
