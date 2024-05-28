@@ -1,0 +1,451 @@
+Adams 77584 77848
+Adkerson 80010
+Aetna Life & Cas. 74721
+Alberty 77948
+Alkire 75357
+Almena State Bank 77213
+Amundson & Assocs. Art Studio, Ltd. 81028
+Anderson 78990 78676 75477
+Aspen Products, Inc. 76783
+Atchison Homeless Shelters, Inc. 77599
+Baugh 78633
+Beisel 75335
+Bethany Med. Center 74033
+Beverly California Corp. 75625
+Bezona 78221
+Bi-State Dev. Co., Inc. 80689
+Bird 74328
+Blockbuster Video, Inc. 74643
+Board of Douglas County Comm'rs 74962
+Halil Dayi 44444
+Board of Harvey County Comm'rs 75268
+Board of Ness County Comm'rs 77111
+Board of Sedgwick County Comm'rs 76548 79116 79422
+Bohanon 75607
+Bold 76697
+Boutwell 77775
+Brady Fluid Svc., Inc. 78226
+Bradley 79017
+Brobst 75920
+Brooks 78973
+Brown 77271 77629 72568 75788
+Bryant 80577
+Buchanan 79539
+Burney 75228
+Burnside 76818
+Burroughs 75902
+Burt 78554
+Bush 79691
+Business Opportunities Unlimited, Inc. 82387
+Bussell 78010
+C.M. Showroom, Inc. 75658
+Cabrera 79068
+Campbell 78110
+Carpenter 81106
+Cessna Aircraft Co. 74571
+Cherryvale Grain Co. 79208
+Church of God in Christ 80679
+Citizens' Utility Ratepayer Bd. 78513 78548
+Citizens' Utility Ratepayers Bd. 78548
+City of DeSoto 75488
+City of Dodge City 82524 77221 76790 81188
+City of Manhattan 76842 82682
+City of Wichita 75213 79840 77684
+Clanton 81839
+Clark 80535
+Collier 80569
+Colombel 78528
+Comer 76593
+Cooper 77803
+Copeland 76829 81414 77652
+Corco, Inc. 76430
+Cox 73344 73344
+Creek 77325
+Crimmins 77847
+Curran 82282
+DPR, Inc. 76352
+Dalke 76210
+Davey 77843
+Dealers Leasing, Inc. 82886
+Decker 77153
+Denk 79797
+Depew 74766 74766
+DeSpiegelaere 75786
+Dimension Graphics, Inc. 81253
+Doniphan County, Kansas 80576
+Doolin 77077
+Drake 80513
+Durham 77514
+Edwards 79597
+Elliott 81001
+Endorf 80631
+Enslow 82708
+Fanning 79052
+Farmers Cooperative Elevator 77764
+Farmers State Bank 75660
+Farmland Industries, Inc. 78637 82055
+Farrell 76114 81208
+Federal Financial Co. 78250
+Fehlhafer 75013
+Ferguson 83453
+Fitzpatrick 76979
+Floyd 74581
+Foy 81626
+Frederking 82142
+Gansert 80820
+Garner 80524
+Garrison 74925
+Garvey Elevators, Inc. 76394 76394
+General Surgery, P.A. 78191
+Gentzel 78935
+Giefer 74687
+Gietzen 78740
+Gilmore 76542
+Graham 80819 78178
+Green 79848
+Griffin 74885 79505
+Grimmett 80276
+Gross 80218 76701
+Harmon 76561 77550
+Haskell 80079
+Heany 75853
+Heck 74472
+Heckard 78429
+Hedrick 76297
+Henrichs 79084
+Herrick 80595
+Hodge 78192
+Hoelting Enterprises 75087
+Home Bank & Tr. Co. 77898
+Hoover 79624
+House of Schwan, Inc. 79092
+Huffman 78987
+Hughs 80840
+Hundley 74931
+Hunt 80686
+International Ass'n of Firefighters 75707 75707
+Jack 74256
+Jackson 79524 77184 79524
+Jayne 80996
+Johnson 79772 76374 80792
+Jones 79573 72709
+Jordan 82216
+Kansas Highway Patrol 77239
+Kansas Human Rights Comm'n 78530
+Kansas Pipeline Partnership 78523
+Karlowski 78903
+Keithley 74614
+Kelley 75305
+Kennedy 79642 79164
+Kimber 76903
+King 78545 78687
+Kirkland 78131
+Knutson Mortgage Corp. 77641
+Koger 74094
+Koss Construction 78054
+Krug 76257
+Kyburz 74116
+LaBarge 74371
+Lakeview Village, Inc. 77523
+Lay 74560
+Le 78285
+League of Kansas Municipalities 76553
+Lisbon 74737
+Loar 80752
+Lofland 80312
+Logan 76803
+Lowmaster 77546
+MLK, Inc. 74515
+Maas 75092
+Madison 80796
+Major 75286
+Marriott Corp. 78393
+Martin 81668
+Matney 79560 79560
+May 78937
+McBride 74946
+McCleary 77287
+McIntyre 74342
+Meehan 77311
+Meigs 78604
+Melton 79770
+Mid-West Painting, Inc. 80194
+Midwest Properties 75062
+Miles Excavating, Inc. 74855
+Miller 78120 80116
+Moler 76282
+Molitor 79363
+Moore 80469 76948
+Morris 82671
+Nance 75703 75703
+Neal 79921
+Neeley 81527
+Nemechek 76543
+Niesz 82053
+Noll 80086
+Nora H. Ringler Revocable Family Trust 76598
+Oliver 80253
+Osborn 76068
+Overstreet 80036
+Palmer News, Inc. 77899
+Parker 77399
+Parsons 75907
+Pate 78501
+Pierce 79126
+Pink Cadillac Bar and Grill 72524
+Pouncil 78601 78601
+Prairie State Bank 76858
+Quality Painting, Inc. 81107
+Radke Oil Co. 76227
+Ramirez 80670 75905
+Redditt 80396
+Reed 82628
+Reynolds 77812
+Reynolds-Rexwinkle Oil, Inc. 77396
+Rice 79798
+Rinehart 78744
+Roberts 76313 76313
+Robinson 75665
+Rodriguez 76225
+Rose & Nelson 76670
+Ruble 80301
+Rutschman 75355
+Ryco Packaging Corp. 73787
+Sage 75208
+Sanders 82223
+Schaefer 80803
+Schmidt 79395 77414 79039
+Scholfield Auto Plaza, L.L.C. 78289
+Schwartz 82900
+Scott 74310
+Seaman U.S.D. No. 345 80831
+Servox 81234
+Shields 77039
+Shughart Thomson & Kilroy, P.C. 76559
+Sims 75892
+Smith 80538 74314 80418 76025 78509 78553
+Snodgrass 79102
+Soto 74920
+Sours 77335
+Southwest Anesthesia Serv., P.A. 76651
+Sowers 76459 76459
+Spencer 75174 75201 75174
+Squires 74812
+St. Joseph Dev. Corp. 77635
+St. Catherine Hospital 78529
+St. Francis Mercantile Equity Exchange, Inc. 81334
+St. Paul Fire and Marine Ins. Co. 78985
+State ex rel. Secretary of SRS 77406 76174 77807 77908 79534
+State ex rel. Stovall 80028
+State Farm 74767
+State Farm Ins. Co. 78297
+State Farm Fire & Cas. Co. 81037
+State Farm Mut. Auto. Ins. Co. 78219
+Steinle 77288 77288
+Sullivan 75721
+Sunflower Park Apts. 75910
+Swickard 81018
+Swinehart 77112
+Taylor 77491 79097
+Tharp 75510
+Thomas 79831
+Thompson 75275 80099
+Thoren 73785
+Three Ten Enterprises, Inc. 75483
+Toshiba Master Lease, Ltd. 74530
+Trendel 77811
+Turnbull Oil, Inc. 76785
+Turner & Boisseau, Chtd. 78000
+U.S.D. No. 501 79195
+United Services Auto. Ass'n 76357
+Universal Underwriters Ins. Co. 78179
+Vakas 75328
+Vanover 80944
+Via Christi Regional Med. Center 79541
+Voth 77418
+Wadsworth 79020
+Walker 80898
+Walters 76638
+Watkins 76288
+Weinlood 78965 77916
+Wells 76817
+Weroha 77431
+Western Resources, Inc. 77681
+Western Video Collectors 75342
+Wheeler 79159
+White 76613
+Wilkerson 83132
+Wilson 78863 73646
+Winters 75230
+Woodward 75666
+Zeferjohn 80946
+Zorn 77574
+Achey 76623
+Aldoroty 78892
+AMCO Ins. Co. 76290
+American Trust Administrators, Inc. 81046
+Amoco Production Co. 77999
+Arnaud 82909
+Associated Wholesale Grocers, Inc. 75279 80786
+Bain 82200
+Bankes 78722
+Barragree 78075
+Bartal 81197
+Battrick 80337
+Bell 81588
+Bennett 75698
+Bergstrom 79453 79531
+Beshears 76610
+Biritz 77483
+Bishop 81117
+Bittel 78883
+Board of Johnson County Comm'rs 77638 76608
+Board of Leavenworth County Comm'rs 76097 76097
+Board of Marshall County Comm'rs 80215
+Board of Ness County Commr's 77111
+Board of Trego County Comm'rs 76574
+Bodine 77867
+Bonin 75014
+Brigham 74211
+Brock 78074
+Brower 80622
+Brumley 76192
+Burton 75729
+Calver 79238
+Calwell 72817
+City of Junction City 77241
+City of Overland Park 78259 77566
+City of Topeka 78862
+Conner 81481
+Cullip 79140
+Cure 79284
+Cypress Media, Inc. 82353
+Danisco Ingredients USA, Inc. 82266
+Decatur County Feed Yard, Inc. 80452
+Deisher 78725
+Dickens 80858
+Dominguez 80175
+Eberth 79994
+Eidemiller 73861
+Ekan Properties 77117
+Estate of Soupene 79680
+Eveleigh 77177
+Farm Bur. Mut. Ins. Co. 75674
+Fee Ins. Agency, Inc. 74709
+Fettke 78269
+First Financial Ins. Co. 79085
+Fisher 77231
+Flenker 80408
+Flint Hills Rural Elec. Co-op Ass'n 77450
+Frazier 79833
+Friday 74666
+Funk Mfg. Co. 75088
+Gamblian 76085
+Gassmann 74272
+George 78313
+Gerhardt 73863
+Gillespie 77368
+Gillick 81403
+Glassman 78905
+Gleason 74710
+Gonzales 78944
+Graff 82148
+Gragg 76618
+Grinsted Products, Inc. 76713
+Hamilton 76573
+Hare 77959
+Hartford Accident & Indem. Co. 74656
+Hartford Cas. Co. 82095
+Hawkinson 77912
+Heiman 77150
+Hesler 80207
+Hickman Trust 80566
+High Plains Oil, Ltd. 74339
+Hill 77809
+Huelsman 80545
+Huet-Vaughn 80362
+Injured Workers of Kansas 77142
+Investcorp, L.P. 80804 80804
+Jarboe 76846
+Junction City Education Ass'n 78126
+Kansas Bd. of Regents 79520
+Kansas Dept. Of Transportation 78947
+Kansas East Conference of the United Methodist Church 80274
+Kansas Gas & Electric, Inc. 75527
+Kaul 79647
+Key 78389
+Kinder 76296
+Klose 80640
+Koser 74678
+KPERS 74394 75497 76524
+Landau Investment Co. 74627
+Landry 80087
+Legislative Coordinating Council 76073 79533
+Lemuz 76624
+Lindsey 81342
+Link, Inc. 80523 81620
+Long 79546
+Luther 79769
+Marais des Cygnes Valley Teachers' Ass'n 79016
+Marquis 78661
+McDonald 76091
+McShares, Inc. 80527
+McTaggart 81047
+Miami County 78055
+Mitchell 77686
+Monroe 81828
+Moon 81512
+Moran 80741
+Moritz Implement Co. 79191
+National Education Assoc., Topeka 74677
+NEA-Coffeyville 81992
+National Union Fire Ins. Co. 79825
+Nguyen 79240
+P.W.P. 78803
+Peden 75205
+Pitts 82345
+Powell 79544
+Presbyterian Manors, Inc. 81779
+Rafferty 79944
+Ray 80068
+Reeves 79540
+Regency Park 80805
+Reifschneider 79979
+Reimer 79581
+Reiter 76183
+Ricke 77019
+River City Broadcasting, Inc. 74660
+Rivera 81691
+Roark 76511
+Rockers 81558
+Ruddick 78343
+Rupp 79449
+Safeco Ins. Co. Of America 77910
+Saliba 77636
+Sammons 80521
+Sampson 80981
+Sandlin 79590
+Shay 79507
+Shirley 72538
+Simon 72438
+Sokol 81978
+Stanfield 77721
+Stansbury 79384
+State ex rel. Board of Healing Arts 77411
+State ex rel. Franklin 80606
+State ex rel. Tomasic 80223 81074
+Stone 78399
+Subway Restaurants, Inc. 78907
+Thomason 82402
+Treaster 80830
+U.S.D. No. 443 80000
+U.S.D. No. 500 74943
+Vinson 79734
+Wasson 80539
+Water Dist. No. 1 79007
+Wear 77443
+Williams Natural Gas Co. 74690
+Wilkinson 78649
+Wishon 80743
+Woodruff 77490
+York 75834
