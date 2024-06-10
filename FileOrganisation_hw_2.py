@@ -67,26 +67,17 @@ class BPlusTree:
         else:
             return self.search(key, node.children[i])
 
-def read_offsets(file_path):
-    with open(file_path, 'r') as file:
-        lines = file.readlines()
-        offsets = {}
+
+def create_bplus_tree(offsets_file, t):
+    bplus_tree = BPlusTree(t)
+
+    with open(offsets_file, "r") as rf:
+        lines = rf.readlines()
         for line in lines:
             parts = line.strip().split()
             case_number = parts[0]
             offset = int(parts[1])
-            offsets[case_number] = offset
-        return offsets
-
-
-def create_bplus_tree(offsets_file, t):
-    offsets = read_offsets(offsets_file)
-
-    bplus_tree = BPlusTree(t)
-
-    for case_number, offset in offsets.items():
-        bplus_tree.insert(case_number, offset)
-
+            bplus_tree.insert(case_number, offset)
     return bplus_tree
 
 
@@ -106,7 +97,6 @@ def search_case(bplus_tree, case_number):
 def create_idx_file(original_file):
     lengthOfCursor = 0
     byteOffset = 0
-    caseChars = ""
     match = 0
     idxList = []
     caseList = []
@@ -144,6 +134,8 @@ def main():
 
     cases_file = 'court-cases.txt'
 
+    #Batch process ile bu fonksiyonu belirli aralıklarla çalıştırıp dosyanın güncel kalmasını sağlayabiliriz.
+    #Ancak bu dosya tarihi bir dosya olduğu için değiştirilmesi pek beklenmez.
     if not os.path.isfile('index_file.txt'):
         create_idx_file('court-cases.txt')
     offsets_file = 'index_file.txt'
