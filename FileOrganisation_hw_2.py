@@ -67,19 +67,6 @@ class BPlusTree:
         else:
             return self.search(key, node.children[i])
 
-
-def read_court_cases(file_path):
-    with open(file_path, 'r') as file:
-        lines = file.readlines()
-        cases = {}
-        for line in lines:
-            parts = line.strip().split('(')
-            case_number = parts[-1].strip(')')
-            case_name = '('.join(parts[:-1]).strip()
-            cases[case_number] = case_name + " " + case_number
-        return cases
-
-
 def read_offsets(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
@@ -92,8 +79,7 @@ def read_offsets(file_path):
         return offsets
 
 
-def create_bplus_tree(cases_file, offsets_file, t):
-    cases = read_court_cases(cases_file)
+def create_bplus_tree(offsets_file, t):
     offsets = read_offsets(offsets_file)
 
     bplus_tree = BPlusTree(t)
@@ -101,10 +87,10 @@ def create_bplus_tree(cases_file, offsets_file, t):
     for case_number, offset in offsets.items():
         bplus_tree.insert(case_number, offset)
 
-    return bplus_tree, cases
+    return bplus_tree
 
 
-def search_case(bplus_tree, case_number, cases):
+def search_case(bplus_tree, case_number):
     offset = bplus_tree.search(case_number)
     if offset is not None:
         #burada offsetle index dosyasına gidip ordan kaydı alacağız
@@ -113,37 +99,39 @@ def search_case(bplus_tree, case_number, cases):
             record = rf.readline().strip()
             if ")" not in record:
                 record += " " + rf.readline()
-            return record, offset
+            return record
     else:
-        return None, None
+        return None
 
 def create_idx_file(original_file):
     lengthOfCursor = 0
     byteOffset = 0
+    caseChars = ""
+    match = 0
     idxList = []
-    switch = False
+    caseList = []
+    firstRow = True
     with open(original_file, "r") as rf:
         for line in rf:
             if ")" in line:
                 byteOffset = lengthOfCursor
-                idxList.append(str(byteOffset) + "\n")
+                if(firstRow):
+                    idxList.append(str(byteOffset))
+                firstRow = True
+                match = re.search(r'\((\d+)\)', line)
+                caseList.append(str(match.group(1)))
+
+            elif ")" not in line:
+                byteOffset = lengthOfCursor
+                idxList.append(str(byteOffset))
+                firstRow = False
+                lengthOfCursor += len(line) + 1
+                continue
             lengthOfCursor += len(line) + 1
 
-            if ")" not in line:
-                byteOffset = lengthOfCursor
-                idxList.append(str(byteOffset) + "\n")
-                continue
-    with open(original_file, "r") as rf:
-        for line in rf:
-            if "(" in rf:
-                s = line
-                caseNo = re.search('\((.*)\)', s)
-                idxList.append(caseNo)
-
-    with open("idx_file.txt", "w") as wf:
-        for idx in idxList:
-            wf.write(str(idx))
-
+    with open("index_file.txt", "w") as wf:
+        for i in range(len(caseList)):
+            wf.write(f"{caseList[i]} {idxList[i]}\n")
 
 def main():
     print("===========================================")
@@ -156,18 +144,18 @@ def main():
 
     cases_file = 'court-cases.txt'
 
-    #if not os.path.isfile('indexFile.txt'):
-    #    create_idx_file('court-cases.txt')
-    offsets_file = 'indexFile.txt'
+    if not os.path.isfile('index_file.txt'):
+        create_idx_file('court-cases.txt')
+    offsets_file = 'index_file.txt'
     t = 3  # Minimum degree
 
-    bplus_tree, cases = create_bplus_tree(cases_file, offsets_file, t)
+    bplus_tree = create_bplus_tree(offsets_file, t)
 
     while True:
         case_number_to_search = input("Please enter a case number to search (or type 'exit' to quit): ")
         if case_number_to_search.lower() == 'exit':
             break
-        case_name, offset = search_case(bplus_tree, case_number_to_search, cases)
+        case_name = search_case(bplus_tree, case_number_to_search)
         if case_name:
             print(f"\nCase Name: {case_name}\n")
         else:
